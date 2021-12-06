@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/phamdaiminhquan/NodejsTraining/issues"
   },
-  "homepage": "https://github.com/phamdaiminhquan/NodejsTraining#readme"
+  "homepage": "https://github.com/phamdaiminhquan/NodejsTraining#readme",
+  "dependencies": {
+    "formidable": "^2.0.1",
+    "nodemailer": "^6.7.2"
+  }
 }
