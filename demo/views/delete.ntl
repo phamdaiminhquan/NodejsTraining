@@ -1,0 +1,13 @@
+#title#
+#message#
+<form method="POST" action="/delete">
+    <div class="">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" />
+    </div>
+    <div class="">
+        <Center>
+            <button style=" width: 100%;" type="submit" >DELETE</button>
+        </Center>
+    </div>
+</form>
