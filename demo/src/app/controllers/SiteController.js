@@ -1,5 +1,12 @@
 const UserModels = require('../models/sequelize/user');
 const userActivityModels = require('../models/mongoose/userActivity')
+const jwt = require('jsonwebtoken')
+
+// hàm tạo token
+const maxAge = 3*24*60*60
+const createToken = (userName) =>{
+    return jwt.sign({userName}, 'next user secret', {expiresIn: '30s'})
+}
 
 class SiteController {
 
@@ -39,14 +46,16 @@ class SiteController {
         UserModels.findOne({ where: { userName: userName}})
             .then((user) => {
                 if(user.password == password) {
+                    const token = createToken(userName)
                     const userA = userActivityModels({
                         idUser: user.id,
                     })
+                    
                     userA.save({})
-                        .then(() => res.json(user))
+                        .then(() => res.json({ token }))
                         .catch(next);
                 }else{
-                    res.render('back', { title: 'login', message: 'err' })
+                    res.render('back')
                 }
             })
             .catch(next);
