@@ -8,6 +8,7 @@ const createToken = (userName) =>{
     return jwt.sign({userName}, 'next user secret', {expiresIn: '30s'})
 }
 
+
 class SiteController {
 
     //[GET] 
@@ -15,6 +16,15 @@ class SiteController {
         UserModels.findAll({ raw: true })
             .then((listUser) => {
                 res.json(listUser);
+            })
+            .catch(next);
+    }
+
+    //[GET] /me
+    me(req, res, next) {
+        UserModels.findOne({ where: { userName: req.body.userName}})
+            .then((user) => {
+                res.json(user);
             })
             .catch(next);
     }
