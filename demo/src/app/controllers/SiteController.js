@@ -1,6 +1,28 @@
 const UserModels = require('../models/sequelize/user');
+const nodemailer = require('nodemailer');
 const userActivityModels = require('../models/mongoose/userActivity')
 const jwt = require('jsonwebtoken')
+
+// Hàm ghi tài khoản mật khẩu gửi đi
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'dh51704012@student.stu.edu.vn',
+        pass: 'Heimerdinger123'
+    }
+});
+// Hàm viết mail
+const mailOptions = (to, sub, text) => {
+    return {
+        from: 'dh51704012@student.stu.edu.vn',
+        to: to,
+        subject: sub,
+        text: text,
+    }
+};
+//nội dung và chủ đề
+var subject = 'Đăng ký tài khoản demoTMA thành công !'
+var text = 'Chúc mừng bạn đã đăng ký tài khoàn thành công'
 
 // hàm tạo token
 const maxAge = 3*24*60*60
@@ -31,11 +53,19 @@ class SiteController {
 
     //[POST] /store
     store(req, res, next) {
+        transporter.sendMail(mailOptions(req.body.email, subject, text), function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
         UserModels.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            email: req.body.email,
             userName: req.body.userName,
-            password: req.body.password
+            password: req.body.password,
         })
         .then((user) => res.json(user))
         .catch(next);
@@ -60,9 +90,12 @@ class SiteController {
                     const userA = userActivityModels({
                         idUser: user.id,
                     })
-                    
+                    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000})
                     userA.save({})
-                        .then(() => res.json({ token }))
+                        .then(() => 
+                            
+                            res.json({ token })
+                        )
                         .catch(next);
                 }else{
                     res.render('back')

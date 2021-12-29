@@ -10,7 +10,9 @@ const port = 3000;
 //connect to mongodb
 dbmongoose.connect();
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({
+    extended: true,
+}));
 app.use(express.json());
 
 //Routes
@@ -19,6 +21,21 @@ route(app);
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });
+
+
+//send an email
+const sendemailtma = require('../node_modules/sendemailtma/index.js')
+const transporter = sendemailtma.transporter('gmail', 'dh51704012@student.stu.edu.vn', 'Heimerdinger123')
+const mailOptions = sendemailtma.mailOptions('dh51704012@student.stu.edu.vn', 'pdmquan@gmail.com', 'Sending Email using Node.js', 'That was easy!')
+
+// transporter.sendMail(mailOptions, function (error, info) {
+//     if (error) {
+//         console.log(error);
+//     } else {
+//         console.log('Email sent: ' + info.response);
+//     }
+// });
+
 // var http = require('http');
 // var fs = require('fs');
 // var url = require('url');

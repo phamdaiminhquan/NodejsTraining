@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --inspect src/index.js"
+    "start": "nodemon --inspect src/index.js",
+    "start:dev": "nodemon --"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "mongoose": "^6.1.2",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
+    "sendemailtma": "^1.0.0",
     "sequelize": "^6.12.0-beta.1"
   },
   "devDependencies": {

@@ -16,6 +16,10 @@ var User = db.define('Users', {
         type: DataTypes.STRING
         // allowNull defaults to true
     },
+    email: {
+        type: DataTypes.STRING
+        // allowNull defaults to true
+    },
     userName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -26,6 +30,6 @@ var User = db.define('Users', {
     }
 });
 
-db.sync();// sync
+// db.sync();// sync
 
 module.exports = User;
