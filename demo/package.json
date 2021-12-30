@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --inspect src/index.js",
-    "start:prod": "env-cmd -f .env.production",
-    "start:dev": "env-cmd -f .env.development"
+    "start:prod": "nodemon --inspect src/config/environment/production/index.js",
+    "start:dev": "nodemon --inspect src/config/environment/development/index.js"
   },
   "repository": {
     "type": "git",

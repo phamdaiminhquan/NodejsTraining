@@ -1,8 +1,8 @@
 var { Sequelize } = require('sequelize');
 
-const db = new Sequelize('dbdemo', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql',
+const db = new Sequelize(process.env.SEQUELIZE_DATA_NAME, process.env.SEQUELIZE_USER_NAME, process.env.SEQUELIZE_PASSWORD, {
+    host: process.env.SEQUELIZE_HOST,
+    dialect: process.env.SEQUELIZE_DIALECT,
     omitNull: true
 });
 

@@ -1,6 +1,6 @@
+// require('dotenv').config();
 const express = require('express');
 const route = require('./routes');
-const dotenv = require('dotenv');
 
 const dbmongoose = require('./config/db/mongoose');
 const dbsequelize = require('./config/db/sequelize');
@@ -11,9 +11,6 @@ const port = 3000;
 //connect to mongodb
 dbmongoose.connect();
 
-//config dotenv
-dotenv.config();
-
 app.use(express.urlencoded({
     extended: true,
 }));
@@ -21,11 +18,9 @@ app.use(express.json());
 
 //Routes
 route(app);
-
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });
-
 
 //send an email
 const sendemailtma = require('../node_modules/sendemailtma/index.js')
