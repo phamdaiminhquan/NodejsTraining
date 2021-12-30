@@ -1,5 +1,6 @@
 const express = require('express');
 const route = require('./routes');
+const dotenv = require('dotenv');
 
 const dbmongoose = require('./config/db/mongoose');
 const dbsequelize = require('./config/db/sequelize');
@@ -9,6 +10,9 @@ const port = 3000;
 
 //connect to mongodb
 dbmongoose.connect();
+
+//config dotenv
+dotenv.config();
 
 app.use(express.urlencoded({
     extended: true,
