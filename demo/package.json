@@ -34,7 +34,8 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
     "sendemailtma": "^1.0.0",
-    "sequelize": "^6.12.0-beta.1"
+    "sequelize": "^6.12.0-beta.1",
+    "tma-environment": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
